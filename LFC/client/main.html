@@ -1,25 +1,25 @@
 <head>
   <title>LFC</title>
-  <header>
-  		LFC
-  </header>
 </head>
 
 <body>
-	<!-- nav bar rendered here -->
+  <h1>Looking For Concerts</h1>
 
-	<!-- main layout gets renderd here -->
+  {{> hello}}
+  {{> info}}
 </body>
 
-<template name="main-layout">
-	<div class="main-content">
-
-		{{> yield}}
-
-	</div>
+<template name="hello">
+  <button>Click Me</button>
+  <p>You've pressed the button {{counter}} times.</p>
 </template>
 
-<template name="home">
-	lmao hey lol
-	<a href="/upcoming">UPCOMING </a>
+<template name="info">
+  <h2>Learn Meteor!</h2>
+  <ul>
+    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
+    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
+    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
+    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
+  </ul>
 </template>
