@@ -1,24 +1,12 @@
-var $;
-require("jsdom").env("", function(err, window) {
-    if (err) {
-        console.error(err);
-        return;
-    }
+//var $ = require('jquery'),
+   // XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
-    $ = require("jquery")(window);
-});
-
-var $ = require('jquery'),
-    XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-
-$.support.cors = true;
-$.ajaxSettings.xhr = function() {
-    return new XMLHttpRequest();
-};
-var request = require('request');
+//$.support.cors = true;
+//    return new XMLHttpRequest();
+//var request = require('request');
 var artistId = "";
 var myEvents = []; // List of jsons
-var list = ["Drake", "Neil", "Justin Bieber"];
+var list = ["Drake", "Mako", "Justin Bieber"];
 
 
 // Whole pipeline
@@ -27,20 +15,22 @@ var findEvents = function(artists) { // questionable syntax
   for (var i = 0; i < artists.length; i++) {
     getArtistId(artists[i]); // questionable call
   }
-  displayAll();
+ console.log(myEvents.length);
+  //displayAll();
 }
 
 // Attraction search (individual artist)
 var getArtistId = function(name, query) {
-  console.log("gettingartistid")
+  console.log(name);
   $.ajax({
     type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2attractions.json?size=1&keyword=" + name + "&apikey=CMA0h8q4ZAphjzGLoVQAZ998gkBIhUUw",
+    url:"https://app.ticketmaster.com/discovery/v2/attractions.json?size=1&keyword=" + name + "&apikey=CMA0h8q4ZAphjzGLoVQAZ998gkBIhUUw",
     async:true,
     dataType: "json",
     success: function(json) {
-                console.log(json);
                 artistId = json._embedded.attractions[0].id; // Save artist id
+                console.log(artistId);
+                console.log("entering find event")
                 findEvent(artistId); // questionable call
               },
     error: function(xhr, status, err) {
@@ -51,14 +41,22 @@ var getArtistId = function(name, query) {
 
 // Find concerts of artist specified by artistId
 var findEvent = function(artistId, query) {
+  console.log(artistId);
   $.ajax({
     type:"GET",
-    url:"https://app.ticketmaster.com/discovery/v2/events.json?radius=30&attractionId" + artistId + "&apikey=CMA0h8q4ZAphjzGLoVQAZ998gkBIhUUw",
+    url:"https://app.ticketmaster.com/discovery/v2/events.json?includeTBA=no&attractionId=" + artistId + "&apikey=CMA0h8q4ZAphjzGLoVQAZ998gkBIhUUw",
     async:true,
     dataType: "json",
     success: function(json) { // Might be many events
-                console.log(json);
-                myEvents.concat(json._embedded.events);
+    if (json._embedded != null) {
+      myEvents = myEvents.concat(json._embedded.events); 
+      console.log(myEvents.length);
+      //for (var i = 0; i < json._embedded.events.length && json._embedded.events.length > 0; i++) {
+       // console.log(json._embedded.events[i].name); 
+      //}
+    } else {
+      console.log("null");
+    }      
             },
     error: function(xhr, status, err) {
                 // Print error message
@@ -85,3 +83,8 @@ var displayAll = function() {
 
 console.log("lmao");
 findEvents(list);
+
+console.log("end "+ myEvents.length);
+
+
+////////////////////////////////////////
