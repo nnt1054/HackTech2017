@@ -7,10 +7,10 @@
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
 
-//var express = require('express'); // Express web server framework
-//var request = require('request'); // "Request" library
-//var querystring = require('querystring');
-//var cookieParser = require('cookie-parser');
+var express = require('express'); // Express web server framework
+var request = require('request'); // "Request" library
+var querystring = require('querystring');
+var cookieParser = require('cookie-parser');
 
 var client_id = '6066b678fbee4a60add8ece599ef8d5d'; // Your client id
 var client_secret = 'c2b5f11271344fe2a5500b23fb993a05'; // Your secret
@@ -33,10 +33,10 @@ var generateRandomString = function(length) {
 
 var stateKey = 'spotify_auth_state';
 
-//var app = express();
+var app = express();
 
-//app.use(express.static(__dirname + '/public'))
- //  .use(cookieParser());
+app.use(express.static(__dirname + '/public'))
+   .use(cookieParser());
 
 app.get('/login', function(req, res) {
 
@@ -107,6 +107,10 @@ app.get('/callback', function(req, res) {
             access_token: access_token,
             refresh_token: refresh_token
           }));
+
+        console.log('fetching songs');
+        fetchSongs()
+
       } else {
         res.redirect('/#' +
           querystring.stringify({
@@ -140,6 +144,64 @@ app.get('/refresh_token', function(req, res) {
     }
   });
 });
+
+var totalSongs = 0;
+var artists = [];
+
+var getTotal = function(token) {
+    console.log("inside gettotal html. ");
+
+    $.ajax({
+        url: 'https://api.spotify.com/v1/me/tracks/',
+        async: true,
+        headers: {
+             'Authorization': 'Bearer ' + token
+        },
+        success: function(response) {
+              totalSongs = response.total;
+              console.log("success html")
+        }
+    });
+
+};
+var fetchAll = function(token) {
+    console.log("inside fetchall ");
+    var limit = 50;
+    for (offset = 0; offset < totalSongs; offset += 50) {
+        var i = totalSongs - offset;
+        console.log(i);
+
+        if (i < limit) {
+          fetchSongs(offset, i, token);
+        } else {
+          fetchSongs(offset, limit, token);
+        }
+      }
+    console.log(artists.length)
+  };
+ 
+var fetchSongs = function(offset, limit, token, query) {
+    console.log("inside fetchsongs html");
+    $.ajax({
+        url: 'https://api.spotify.com/v1/me/tracks?limit=' + limit + '&offset=' + offset,
+        async: true,
+        headers: {
+             'Authorization': 'Bearer ' + token
+        },
+        data: {
+            q: query,
+            type: 'track'
+        },
+        success: function(response) {
+          for (var j = 0; j < response.length; j++) {
+            artists.push(response.artists[j][0]);
+          }
+        }
+    })
+
+
+};
+
 
 console.log('Listening on 8888');
 app.listen(8888);
