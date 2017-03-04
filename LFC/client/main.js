@@ -1,12 +1,18 @@
 import { Template } from 'meteor/templating';
 import { ReactiveVar } from 'meteor/reactive-var';
+import { ReactiveDict } from 'meteor/reactive-dict';
 
 import './main.html';
 
 Template.hello.onCreated(function helloOnCreated() {
   // counter starts at 0
+  // do all the cool shit that looks for upcoming converts
   this.counter = new ReactiveVar(0);
 });
+
+Template.body.onCreated(function bodyOnCreated()) {
+  this.state = new ReactiveDict();
+}
 
 Template.hello.helpers({
   counter() {
