@@ -1,11 +1,12 @@
 Router.configure({
-	layoutTemplate: "main-layout"
+	layoutTemplate: "main_layout"
+
 });
 
 Router.map(function() {
 	this.route('home', {
 		path: '/',
-		template: ''
+		template: 'home'
 	});
 });
 
@@ -16,3 +17,30 @@ Router.map(function() {
 	});
 });
 
+Router.map(function() {
+	this.route('auth', {
+		path: '/auth',
+		template: 'auth'
+	});
+});
+
+Router.map(function() {
+	this.route('saved', {
+		path: '/saved',
+		template: 'saved'
+	});
+});
+
+Router.map(function() {
+	this.route('location', {
+		path: '/location',
+		template: 'location'
+	});
+});
+
+Router.map(function() {
+	this.route('artist', {
+		path: '/artist',
+		template: 'artist'
+	});
+});

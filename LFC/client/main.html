@@ -3,23 +3,61 @@
 </head>
 
 <body>
-  <h1>Looking For Concerts</h1>
+  {{> home}}
+  <!-- {{> navbar}} -->
 
-  {{> hello}}
-  {{> info}}
 </body>
 
-<template name="hello">
-  <button>Click Me</button>
-  <p>You've pressed the button {{counter}} times.</p>
+<template name="main_layout">
+
+  <label class="hide-completed">
+    <input type="checkbox" />
+    Saved Events
+  </label>
+
+
+  <label class="sdate">
+    <input type="button" value = "Sort By Date" name="Sort By Date" />
+  </label>
+
+  <label class="sartist">
+    <input type="button" value = "Sort By Artist" name="Sort By Artist" />
+  </label>
+
+  <label class="slocate">
+    <input type="button" value = "Sort By Location" name="Sort By Location" />
+  </label>
+
+  {{EventLoop}}
+
+  <ul class="eventlist">
+    {{#each display_all}}
+      {{> concert}}
+    {{/each}}
+  </ul>
+
 </template>
 
-<template name="info">
-  <h2>Learn Meteor!</h2>
-  <ul>
-    <li><a href="https://www.meteor.com/try" target="_blank">Do the Tutorial</a></li>
-    <li><a href="http://guide.meteor.com" target="_blank">Follow the Guide</a></li>
-    <li><a href="https://docs.meteor.com" target="_blank">Read the Docs</a></li>
-    <li><a href="https://forums.meteor.com" target="_blank">Discussions</a></li>
-  </ul>
+<template name="home">
+  <h1>Looking For Concerts</h1>
+</template>
+
+<!-- <template name="navbar">
+  <a href="/upcoming"> Upcoming </a>
+  <a href="/artist"> Artists </a>
+  <a href="/location"> Location </a>
+  <a href="/saved"> Saved Concerts</a>
+  <a href="/login"> Sign in </a>
+</template> -->
+
+<template name="concert">
+  <li class="{{#if checked}}checked{{/if}}">
+  	<span class="name">{{name}}</span>
+    <span class="event-date">{{dates.start.localDate}}</span>
+  	<span class="location">{{embedded.venues[0].city.name}}</span>
+    <a href="{{url}}" class="sidenav-list-item__link">
+                More details
+            </a>
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+  </li>
 </template>

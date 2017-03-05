@@ -38,7 +38,7 @@ var app = express();
 app.use(express.static(__dirname + '/public'))
    .use(cookieParser());
 
-app.get('/login', function(req, res) {
+app.get('/login2', function(req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
@@ -179,7 +179,7 @@ var fetchAll = function(token) {
       }
     console.log(artists.length)
   };
- 
+
 var fetchSongs = function(offset, limit, token, query) {
     console.log("inside fetchsongs html");
     $.ajax({
