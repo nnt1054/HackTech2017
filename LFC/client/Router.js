@@ -1,14 +1,25 @@
+
 Router.configure({
 	layoutTemplate: "main_layout"
+	//loadingTemplate: 'login',
+	/*waitOn: function(){
+    	if (Accounts.loginServicesConfigured()) {
+    		return Meteor.subscribe()
+    	}
+    }
+    */
 
 });
+
+
 
 Router.map(function() {
-	this.route('home', {
+	this.route('login', {
 		path: '/',
-		template: 'home'
+		template: 'login'
 	});
 });
+
 
 Router.map(function() {
 	this.route('upcoming', {
@@ -17,12 +28,6 @@ Router.map(function() {
 	});
 });
 
-Router.map(function() {
-	this.route('auth', {
-		path: '/auth',
-		template: 'auth'
-	});
-});
 
 Router.map(function() {
 	this.route('saved', {

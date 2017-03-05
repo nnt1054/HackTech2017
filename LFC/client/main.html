@@ -27,7 +27,7 @@
   <label class="slocate">
     <input type="button" value = "Sort By Location" name="Sort By Location" />
   </label>
-
+  {{> yield}}
   {{EventLoop}}
 
   <ul class="eventlist">
@@ -60,4 +60,8 @@
             </a>
     <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
   </li>
+</template>
+
+<template name="login">
+{{> loginButtons}}
 </template>

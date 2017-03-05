@@ -96,7 +96,9 @@ var displayAll = function() {
 };
 
 
-findEvents(list);
+//findEvents(list);
+console.log(Meteor.userId());
+
 },
 
 display_all() {
