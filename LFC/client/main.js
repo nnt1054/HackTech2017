@@ -11,8 +11,7 @@ var options = {
 };
 Meteor.loginWithSpotify(options, function(err) {
   console.log("entered");
-  console.log(Meteor.userId());
-  console.log(Meteor.findBy(Meteor.userId()))
+  console.log(Meteor.users.findOne(Meteor.userId()));;
   console.log(err || "No error");
 
 });
