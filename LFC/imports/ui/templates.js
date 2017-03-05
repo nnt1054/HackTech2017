@@ -13,36 +13,6 @@ Template.upcoming.helpers({
   },
 });
 
-Template.body.helpers({
-
-  list_concerts_upcoming() {
-    const instance = Template.instance();
-    // Otherwise, return all of the Events
-    return Events.find({}, { sort: { Date: -1 } });
-  },
-
-  list_concerts_artist() {
-    const instance = Template.instance();
-    // Otherwise, return all of the Events
-    return Events.find({}, { sort: { Date: -1 } });
-  },
-
-  list_concerts_location() {
-    const instance = Template.instance();
-    // Otherwise, return all of the Events
-    return Events.find({}, { sort: { Date: -1 } });
-  },
-
-  list_concerts_saved() {
-    const instance = Template.instance();
-    // Otherwise, return all of the Events
-    return Events.find({}, { sort: { Date: -1 } });
-  },
-
-
-
-});
-
 Template.body.events({
 
   'change .save-event input'(event, instance) {

@@ -4,6 +4,7 @@
 
 <body>
   {{> home}}
+  {{> login}}
   <!-- {{> navbar}} -->
 
 </body>
@@ -27,7 +28,7 @@
   <label class="slocate">
     <input type="button" value = "Sort By Location" name="Sort By Location" />
   </label>
-  {{> yield}}
+
   {{EventLoop}}
 
   <ul class="eventlist">
@@ -63,5 +64,5 @@
 </template>
 
 <template name="login">
-{{> loginButtons}}
+  {{> loginButtons}}
 </template>

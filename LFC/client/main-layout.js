@@ -97,8 +97,6 @@ var displayAll = function() {
 
 
 //findEvents(list);
-console.log(Meteor.userId());
-
 },
 
 display_all() {
@@ -125,7 +123,6 @@ display_all() {
       if (x > y) {return 1;}
       else return 0;
     });
-    console.log(e);
     return e;
   },
 
