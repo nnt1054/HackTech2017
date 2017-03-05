@@ -1,0 +1,53 @@
+<template name="upcoming">
+
+    <ul>
+      <li> Neil </li>
+      {{#each show_upcoming}}
+        {{> concert}}
+      {{/each}}
+    </ul>
+
+</template>
+
+<template name="artist">
+
+    <header>
+      <h1>Sort by Artist</h1>
+    </header>
+
+    <ul>
+      {{#each list_concert}}
+        {{> concert}}
+      {{/each}}
+    </ul>
+</template>
+
+<template name="location">
+
+    <header>
+      <h1>Sort By Location</h1>
+    </header>
+
+    <ul>
+      {{#each list_concert}}
+        {{> concert}}
+      {{/each}}
+    </ul>
+</template>
+
+<template name="saved">
+
+    <header>
+      <h1>Saved Events</h1>
+    </header>
+
+    <ul>
+      {{#each list_concert}}
+        {{> concert}}
+      {{/each}}
+    </ul>
+</template>
+
+<template name="login">
+  logging in...
+</template>
