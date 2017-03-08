@@ -4,12 +4,25 @@
 
 <body>
   {{> home}}
-  {{> login}}
   <!-- {{> navbar}} -->
 
 </body>
 
 <template name="main_layout">
+  <br>
+  <label class="login">
+    <input type="button" value = "Connect Spotify" name="Connect Spotify" />
+  </label>
+
+  <label class="load">
+    <input type="button" value = "Load Artists" name="Load Artists" />
+  </label>
+
+  <label class="display">
+    <input type="button" value = "Load Concerts" name="Load Concerts" />
+  </label>
+
+  <br>
 
   <label class="hide-completed">
     <input type="checkbox" />
@@ -29,7 +42,7 @@
     <input type="button" value = "Sort By Location" name="Sort By Location" />
   </label>
 
-  {{EventLoop}}
+  <br>
 
   <ul class="eventlist">
     {{#each display_all}}
