@@ -10,7 +10,7 @@ Meteor.startup(() => {
       $set: {
         "clientId": "6066b678fbee4a60add8ece599ef8d5d",
         "secret": "c2b5f11271344fe2a5500b23fb993a05",
-        "redirectUri" : 'https://lookingforconcert.com/auth/heroku/callback'
+        "redirectUri" : 'http://lookingforconcert.com/auth/heroku/callback'
       }
     },
     { upsert: true }
