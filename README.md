@@ -10,10 +10,11 @@ User Flow:
 3) Click "Load concerts." Note: Concerts will not be displayed yet.
 4) Click one of the "Sort by" buttons to see your concerts.
 
-Planned Fixes:
+FIXME:
 
 1) Need to refine the Ticketmaster query to speedup runtime.  
 2) Need to fix the "Sort by Location" to sort by distance to current location, instead of sorting locations alphabetically.
 3) Fix saved events.
 4) Possibly change implementation to display concerts upon "Load Concerts" button as opposed to current system that requires users to sort before viewing.
-5) UI/UX
+5) Add email/text alert reminders based on Saved Events
+6) UI/UX
