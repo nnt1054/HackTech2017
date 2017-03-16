@@ -1,4 +1,4 @@
-# HackTech2017
+# LookingForConcert
 WIP Web Application built using Meteor.js at CalTech's hackathon, Hacktech.  Uses Spotify and Ticketmaster API to allow users to sign in and displays concerts based on the artists that they listen to. Also allows users to sort the concerts returned by date, artist, and location.
 
 Link : https://lookingforconcert.herokuapp.com/
